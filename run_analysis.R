@@ -46,11 +46,12 @@ test_dataset<-cbind(subject_test,y_test,x_test)
 final_dataset<-rbind(train_dataset,test_dataset)
 
 
-#subsetting the data : 
+#subsetting the data by only taking mean and std columns : 
 
 vec<-grepl("mean|std",names(final_dataset))
 
 res<-final_dataset[,vec==TRUE]
+
 
 res<-cbind(select(final_dataset , volunteer_id , Activity_id), res)
 
@@ -63,6 +64,15 @@ res<-merge(activity_labels,res,by=intersect(names(res),names(activity_labels)))
 
 #creating the tidy dataset : 
 
+df<-aggregate(res,by=list(res$Activity_id , res$volunteer_id), FUN = mean)
+
+df<-df[,-4] 
+
+#this command above was used to remove activity_type column since it s not numeric and thus it became NA values.
+
+write.table(df,"tidy_dataset.txt",row.names = F)
+
+#writing the tidy dataset result in "tidy_dataset.txt"
 
 
 
