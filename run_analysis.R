@@ -75,6 +75,23 @@ write.table(df,"tidy_dataset.txt",row.names = F)
 #writing the tidy dataset result in "tidy_dataset.txt"
 
 
+############################### this contains a chunk of code for code book###################
+
+library(tibble)
+
+codebook<-enframe(names(df) , name = "variable_id", value = "variable_name")
+variable_type<-sapply(df, class)
+
+codebook<-cbind(codebook,variable_type)
+
+rownames(codebook)<-seq(1:83)
+
+#this line below will return the dataframe containing variable_id , name and their respective type
+View(codebook)
+
+
+
+
 
 
 
