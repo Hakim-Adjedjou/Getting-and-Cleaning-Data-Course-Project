@@ -1,4 +1,12 @@
 
+
+#download datasets : 
+
+fileurl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+download.file(fileurl , destfile = "./project.zip")
+
+unzip("./project.zip")
+
 #loading files into R  : 
 
 activity_labels<-read.table("./UCI HAR Dataset/activity_labels.txt")
